@@ -24,9 +24,8 @@ scrape_configs:
       # for Netdata to uniquely identify it
       #server: ['prometheus1']
     honor_labels: true
-
     static_configs:
-      - targets: ['host.docker.internal:19999']
+      - targets: ['smolboi.internal.glob.casa:19999']
 
   - job_name: 'pihole'
     static_configs:
@@ -42,4 +41,4 @@ scrape_configs:
 
   - job_name: 'lumpyspace-node'
     static_configs:
-      - targets: ['lumpyspace.local:9100']
+      - targets: ['lumpyspace.internal.glob.casa:9100']
