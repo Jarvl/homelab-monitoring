@@ -23,7 +23,7 @@
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "graphTooltip": 0,
+  "graphTooltip": 1,
   "id": 1,
   "links": [
     {
@@ -217,7 +217,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "plex_up",
+          "expr": "plex_up{instance=\"plex-exporter:9594\"}",
           "instant": false,
           "legendFormat": "Heartbeat",
           "range": true,
@@ -889,7 +889,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "plex_media_count{title=\"Movies\"}",
+          "expr": "plex_media_count{title=\"Movies\", instance=\"plex-exporter:9594\"}",
           "interval": "",
           "legendFormat": "{{ title }}",
           "range": true,
@@ -954,7 +954,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "plex_media_count{title=\"TV Shows\"}",
+          "expr": "plex_media_count{title=\"TV Shows\", instance=\"plex-exporter:9594\"}",
           "interval": "",
           "legendFormat": "{{ title }}",
           "range": true,
@@ -1019,7 +1019,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "plex_media_count{title=\"TV Shows - Episodes\"}",
+          "expr": "plex_media_count{title=\"TV Shows - Episodes\", instance=\"plex-exporter:9594\"}",
           "interval": "",
           "legendFormat": "{{ title }}",
           "range": true,
@@ -1222,8 +1222,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1293,8 +1292,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1358,7 +1356,6 @@
       "type": "row"
     }
   ],
-  "refresh": "5s",
   "schemaVersion": 39,
   "tags": [],
   "templating": {
@@ -1369,10 +1366,12 @@
     "to": "now"
   },
   "timeRangeUpdatedDuringEditOrView": false,
-  "timepicker": {},
+  "timepicker": {
+    "hidden": false
+  },
   "timezone": "",
   "title": "Plex BMO",
   "uid": "plex-bmo",
-  "version": 10,
+  "version": 13,
   "weekStart": ""
 }
