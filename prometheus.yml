@@ -27,12 +27,12 @@ scrape_configs:
     honor_labels: true
 
     static_configs:
-      - targets: [ 'host.docker.internal:19999' ]
+      - targets: ['host.docker.internal:19999']
 
   - job_name: 'plex'
     scrape_interval: 5s
     static_configs:
-      - targets: ['host.docker.internal:9594']
+      - targets: ['plex-exporter:9594']
 
   - job_name: 'node'
     static_configs:

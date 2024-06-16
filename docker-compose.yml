@@ -3,6 +3,7 @@ version: '3.8'
 services:
   grafana:
     image: grafana/grafana-oss
+    container_name: grafana
     restart: unless-stopped
     volumes:
       - grafana-storage:/var/lib/grafana
@@ -11,6 +12,7 @@ services:
 
   prometheus:
     image: prom/prometheus
+    container_name: prometheus
     restart: unless-stopped
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
@@ -24,10 +26,11 @@ services:
     ports:
       - 9090:9090
     extra_hosts:
-      - host.docker.internal:host-gateway
+      - host.docker.internal:host-gateway  # For netdata access on host
 
   node-exporter:
     image: prom/node-exporter
+    container_name: node-exporter
     restart: unless-stopped
     volumes:
       - /proc:/host/proc:ro
@@ -41,16 +44,16 @@ services:
     ports:
       - 9100:9100
 
-  plex-metrics-exporter:
+  plex-exporter:
     image: ghcr.io/axsuul/plex-media-server-exporter
-    container_name: plex-metrics-exporter
+    container_name: plex-exporter
     restart: unless-stopped
     env_file:
       - "plex_metrics_exporter.env"
     ports:
       - 9594:9594
     extra_hosts:
-      - host.docker.internal:host-gateway
+      - host.docker.internal:host-gateway  # For Plex access on host
 
 volumes:
   prometheus-data:
