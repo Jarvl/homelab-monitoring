@@ -19,5 +19,6 @@ curl https://get.netdata.cloud/kickstart.sh > /tmp/netdata-kickstart.sh && sh /t
 Copy `*.env.example` files to `*.env` and define/change variables appropriately.
 
 ```bash
+cp pihole_exporter.env.example pihole_exporter.env
 cp plex_metrics_exporter.env.example plex_metrics_exporter.env
 ```

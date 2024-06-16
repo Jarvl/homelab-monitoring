@@ -55,6 +55,15 @@ services:
     extra_hosts:
       - host.docker.internal:host-gateway  # For Plex access on host
 
+  pihole-exporter:
+    image: ekofr/pihole-exporter:latest
+    container_name: pihole-exporter
+    restart: unless-stopped
+    env_file:
+      - "pihole_exporter.env"
+    ports:
+      - 9617:9617
+
 volumes:
   prometheus-data:
   grafana-storage:
