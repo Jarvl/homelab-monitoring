@@ -6,7 +6,6 @@ global:
 
 scrape_configs:
   - job_name: 'prometheus'
-    scrape_interval: 5s
     static_configs:
       - targets: ['localhost:9090']
 
@@ -30,7 +29,6 @@ scrape_configs:
       - targets: ['host.docker.internal:19999']
 
   - job_name: 'plex'
-    scrape_interval: 5s
     static_configs:
       - targets: ['plex-exporter:9594']
 
