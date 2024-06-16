@@ -9,7 +9,7 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 
-  - job_name: 'netdata'
+  - job_name: 'smolboi-netdata'
     metrics_path: '/api/v1/allmetrics'
     params:
       # format: prometheus | prometheus_all_hosts
