@@ -41,6 +41,17 @@ services:
     ports:
       - 9100:9100
 
+  plex-metrics-exporter:
+    image: ghcr.io/axsuul/plex-media-server-exporter
+    container_name: plex-metrics-exporter
+    restart: unless-stopped
+    env_file:
+      - "plex_metrics_exporter.env"
+    ports:
+      - 9594:9594
+    extra_hosts:
+      - host.docker.internal:host-gateway
+
 volumes:
   prometheus-data:
   grafana-storage:
