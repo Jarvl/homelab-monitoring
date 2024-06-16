@@ -25,7 +25,7 @@ scrape_configs:
       #server: ['prometheus1']
     honor_labels: true
     static_configs:
-      - targets: ['smolboi.internal.glob.casa:19999']
+      - targets: ['host.docker.internal:19999']
 
   - job_name: 'pihole'
     static_configs:
