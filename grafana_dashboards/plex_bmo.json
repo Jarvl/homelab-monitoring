@@ -519,7 +519,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(netdata_system_cpu_percentage_average{dimension!=\"idle\"})",
+          "expr": "sum(netdata_system_cpu_percentage_average{dimension!=\"idle\", instance=\"smolboi\"})",
           "instant": false,
           "legendFormat": "usage",
           "range": true,
@@ -616,7 +616,7 @@
             "uid": "bdow5owq5exvke"
           },
           "editorMode": "code",
-          "expr": "((node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes) * 100",
+          "expr": "((node_memory_MemTotal_bytes{instance=\"node-exporter:9100\"} - node_memory_MemAvailable_bytes{instance=\"node-exporter:9100\"}) / node_memory_MemTotal_bytes{instance=\"node-exporter:9100\"}) * 100",
           "instant": false,
           "interval": "",
           "legendFormat": "usage",
@@ -714,7 +714,7 @@
             "uid": "bdow5owq5exvke"
           },
           "editorMode": "code",
-          "expr": "sum by (dimension) (netdata_net_net_kilobits_persec_average)",
+          "expr": "sum by (dimension) (netdata_net_net_kilobits_persec_average{instance=\"smolboi\"})",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -811,7 +811,7 @@
             "uid": "bdow5owq5exvke"
           },
           "editorMode": "code",
-          "expr": "avg(netdata_intelgpu_engine_busy_perc_percentage_average)",
+          "expr": "avg(netdata_intelgpu_engine_busy_perc_percentage_average{instance=\"smolboi\"})",
           "instant": false,
           "legendFormat": "usage",
           "range": true,
@@ -849,7 +849,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "semi-dark-blue"
+                "color": "semi-dark-blue",
+                "value": null
               }
             ]
           }
@@ -913,7 +914,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "purple",
+                "value": null
               }
             ]
           }
@@ -977,7 +979,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "super-light-red"
+                "color": "super-light-red",
+                "value": null
               }
             ]
           }
@@ -1073,7 +1076,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1368,6 +1372,6 @@
   "timezone": "",
   "title": "Plex BMO",
   "uid": "plex-bmo",
-  "version": 13,
+  "version": 14,
   "weekStart": ""
 }
