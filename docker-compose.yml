@@ -25,8 +25,6 @@ services:
       - '--web.enable-lifecycle'
     ports:
       - 9090:9090
-    extra_hosts:
-      - host.docker.internal:host-gateway  # For netdata access on host
 
   node-exporter:
     image: prom/node-exporter
@@ -52,8 +50,6 @@ services:
       - "plex_metrics_exporter.env"
     ports:
       - 9594:9594
-    extra_hosts:
-      - host.docker.internal:host-gateway  # For Plex access on host
 
   pihole-exporter:
     image: ekofr/pihole-exporter:latest
