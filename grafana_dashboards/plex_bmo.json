@@ -419,6 +419,19 @@
       "type": "timeseries"
     },
     {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 40,
+      "panels": [],
+      "title": "Resources",
+      "type": "row"
+    },
+    {
       "datasource": {
         "type": "prometheus",
         "uid": "bdow5owq5exvke"
@@ -482,7 +495,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 14
+        "y": 15
       },
       "id": 38,
       "options": {
@@ -506,14 +519,14 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "netdata_cgroup_cpu_limit_percentage_average{cgroup_name=\"plex\"}",
+          "expr": "sum(netdata_system_cpu_percentage_average{dimension!=\"idle\"})",
           "instant": false,
-          "legendFormat": "{{dimension}}",
+          "legendFormat": "usage",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Plex CPU Usage",
+      "title": "CPU",
       "type": "timeseries"
     },
     {
@@ -580,9 +593,9 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 14
+        "y": 15
       },
-      "id": 32,
+      "id": 39,
       "options": {
         "legend": {
           "calcs": [],
@@ -603,14 +616,112 @@
             "uid": "bdow5owq5exvke"
           },
           "editorMode": "code",
-          "expr": "avg(netdata_intelgpu_engine_busy_perc_percentage_average)",
+          "expr": "((node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes) * 100",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "usage",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Memory",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "bdow5owq5exvke"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Kbits"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 25
+      },
+      "id": 41,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "bdow5owq5exvke"
+          },
+          "editorMode": "code",
+          "expr": "sum by (dimension) (netdata_net_net_kilobits_persec_average)",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "iGPU Usage",
+      "title": "Network",
       "type": "timeseries"
     },
     {
@@ -674,12 +785,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 24,
-        "x": 0,
-        "y": 24
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 25
       },
-      "id": 39,
+      "id": 32,
       "options": {
         "legend": {
           "calcs": [],
@@ -700,15 +811,14 @@
             "uid": "bdow5owq5exvke"
           },
           "editorMode": "code",
-          "expr": "((node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes) * 100",
+          "expr": "avg(netdata_intelgpu_engine_busy_perc_percentage_average)",
           "instant": false,
-          "interval": "",
-          "legendFormat": "% memory usage",
+          "legendFormat": "usage",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "System Memory Usage",
+      "title": "iGPU",
       "type": "timeseries"
     },
     {
@@ -717,7 +827,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 32
+        "y": 34
       },
       "id": 37,
       "panels": [],
@@ -814,9 +924,9 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
+        "w": 4,
         "x": 0,
-        "y": 33
+        "y": 35
       },
       "id": 10,
       "options": {
@@ -844,7 +954,267 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "plex_media_count",
+          "expr": "plex_media_count{title=\"Movies\"}",
+          "interval": "",
+          "legendFormat": "{{ title }}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Library",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "bdow5owq5exvke"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Movies"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Shows"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Music"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Shows - Episodes"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 4,
+        "x": 4,
+        "y": 35
+      },
+      "id": 42,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.0.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "bdow5owq5exvke"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "plex_media_count{title=\"TV Shows\"}",
+          "interval": "",
+          "legendFormat": "{{ title }}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Library",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "bdow5owq5exvke"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Movies"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Shows"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Music"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Shows - Episodes"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 4,
+        "x": 8,
+        "y": 35
+      },
+      "id": 43,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.0.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "bdow5owq5exvke"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "plex_media_count{title=\"TV Shows - Episodes\"}",
           "interval": "",
           "legendFormat": "{{ title }}",
           "range": true,
@@ -978,7 +1348,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 33
+        "y": 35
       },
       "hideTimeOverride": true,
       "id": 4,
@@ -1026,7 +1396,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 41
+        "y": 43
       },
       "id": 36,
       "panels": [
@@ -1060,10 +1430,10 @@
             "overrides": []
           },
           "gridPos": {
-            "h": 3,
+            "h": 6,
             "w": 1,
             "x": 0,
-            "y": 42
+            "y": 44
           },
           "id": 25,
           "options": {
@@ -1131,10 +1501,10 @@
             "overrides": []
           },
           "gridPos": {
-            "h": 3,
+            "h": 6,
             "w": 23,
             "x": 1,
-            "y": 42
+            "y": 44
           },
           "id": 31,
           "options": {
@@ -1190,7 +1560,7 @@
     "list": []
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-3h",
     "to": "now"
   },
   "timeRangeUpdatedDuringEditOrView": false,
@@ -1198,6 +1568,6 @@
   "timezone": "",
   "title": "Plex BMO",
   "uid": "plex-bmo",
-  "version": 5,
+  "version": 9,
   "weekStart": ""
 }
