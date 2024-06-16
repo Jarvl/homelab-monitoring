@@ -23,30 +23,8 @@ services:
       - '--web.enable-lifecycle'
     ports:
       - 9090:9090
-
-  netdata:
-    image: netdata/netdata
-    pid: host
-    network_mode: host # Port 19999
-    restart: unless-stopped
-    cap_add:
-      - SYS_PTRACE
-      - SYS_ADMIN
-    security_opt:
-      - apparmor:unconfined
-    volumes:
-      - ./netdataconfig/netdata:/etc/netdata
-      - netdatalib:/var/lib/netdata
-      - netdatacache:/var/cache/netdata
-      - /etc/passwd:/host/etc/passwd:ro
-      - /etc/group:/host/etc/group:ro
-      - /etc/localtime:/etc/localtime:ro
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /etc/os-release:/host/etc/os-release:ro
-      - /var/log:/host/var/log:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /run/dbus:/run/dbus:ro # systemd units monitoring
+    extra_hosts:
+      - host.docker.internal:host-gateway
 
   node-exporter:
     image: prom/node-exporter
@@ -66,5 +44,3 @@ services:
 volumes:
   prometheus-data:
   grafana-storage:
-  netdatalib:
-  netdatacache:
