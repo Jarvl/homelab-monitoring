@@ -8,6 +8,8 @@ scrape_configs:
   - job_name: 'prometheus'
     static_configs:
       - targets: ['localhost:9090']
+        labels:
+          node: 'smolboi'
 
   - job_name: 'netdata'
     metrics_path: '/api/v1/allmetrics'
@@ -31,11 +33,13 @@ scrape_configs:
 
   - job_name: 'pihole'
     static_configs:
-      - targets: ['pihole-exporter:9617']
+      - targets: ['pihole-exporter:9617']  # Already emits node labels
 
   - job_name: 'plex'
     static_configs:
       - targets: ['plex-exporter:9594']
+        labels:
+          node: 'smolboi'
 
   - job_name: 'node-exporter'
     static_configs:
