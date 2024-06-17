@@ -9,7 +9,7 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
         labels:
-          node: 'smolboi'
+          instance: 'smolboi'
 
   - job_name: 'netdata'
     metrics_path: '/api/v1/allmetrics'
@@ -29,23 +29,23 @@ scrape_configs:
     static_configs:
       - targets: ['host.docker.internal:19999']
         labels:
-          node: 'smolboi'
+          instance: 'smolboi'
 
   - job_name: 'pihole'
     static_configs:
-      - targets: ['pihole-exporter:9617']  # Already emits node labels
+      - targets: ['pihole-exporter:9617']
 
   - job_name: 'plex'
     static_configs:
       - targets: ['plex-exporter:9594']
         labels:
-          node: 'smolboi'
+          instance: 'smolboi'
 
   - job_name: 'node-exporter'
     static_configs:
       - targets: ['node-exporter:9100']
         labels:
-          node: 'smolboi'
+          instance: 'smolboi'
       - targets: ['lumpyspace.internal.glob.casa:9100']
         labels:
-          node: 'lumpyspace'
+          instance: 'lumpyspace'
