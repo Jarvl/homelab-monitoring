@@ -1,9 +1,67 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_SMOLBOI-PROMETHEUS",
+      "label": "smolboi-prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "piechart",
+      "name": "Pie chart",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
         "builtIn": 1,
-        "datasource": "bdow5owq5exvke",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_SMOLBOI-PROMETHEUS}"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -18,12 +76,15 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 10176,
   "graphTooltip": 0,
-  "id": 2,
+  "id": null,
   "links": [],
   "panels": [
     {
       "collapsed": false,
-      "datasource": "bdow5owq5exvke",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -34,7 +95,10 @@
       "panels": [],
       "targets": [
         {
-          "datasource": "bdow5owq5exvke",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
           "refId": "A"
         }
       ],
@@ -42,18 +106,23 @@
       "type": "row"
     },
     {
-      "datasource": "bdow5owq5exvke",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_SMOLBOI-PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
           "mappings": [
             {
               "options": {
                 "0": {
                   "text": "Disabled"
-                },
+                }
+              },
+              "type": "value"
+            },
+            {
+              "options": {
                 "1": {
                   "text": "Enabled"
                 }
@@ -109,7 +178,10 @@
       "pluginVersion": "11.0.0",
       "targets": [
         {
-          "datasource": "bdow5owq5exvke",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_SMOLBOI-PROMETHEUS}"
+          },
           "expr": "pihole_status{hostname=~'$node'}",
           "instant": true,
           "interval": "",
@@ -122,12 +194,12 @@
       "type": "stat"
     },
     {
-      "datasource": "bdow5owq5exvke",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_SMOLBOI-PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
           "mappings": [
             {
               "options": {
@@ -183,7 +255,10 @@
       "pluginVersion": "11.0.0",
       "targets": [
         {
-          "datasource": "bdow5owq5exvke",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_SMOLBOI-PROMETHEUS}"
+          },
           "expr": "pihole_domains_being_blocked{hostname=~'$node'}",
           "instant": false,
           "interval": "",
@@ -196,12 +271,12 @@
       "type": "stat"
     },
     {
-      "datasource": "bdow5owq5exvke",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_SMOLBOI-PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
           "mappings": [
             {
               "options": {
@@ -257,7 +332,10 @@
       "pluginVersion": "11.0.0",
       "targets": [
         {
-          "datasource": "bdow5owq5exvke",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_SMOLBOI-PROMETHEUS}"
+          },
           "expr": "pihole_unique_domains{hostname=~'$node'}",
           "interval": "",
           "legendFormat": "",
@@ -269,7 +347,10 @@
       "type": "stat"
     },
     {
-      "datasource": "bdow5owq5exvke",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_SMOLBOI-PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -322,7 +403,10 @@
       },
       "targets": [
         {
-          "datasource": "bdow5owq5exvke",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_SMOLBOI-PROMETHEUS}"
+          },
           "expr": "pihole_top_queries{hostname=~'$node'}",
           "instant": true,
           "interval": "",
@@ -335,7 +419,10 @@
       "type": "piechart"
     },
     {
-      "datasource": "bdow5owq5exvke",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_SMOLBOI-PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -393,7 +480,10 @@
       "pluginVersion": "6.1.4",
       "targets": [
         {
-          "datasource": "bdow5owq5exvke",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_SMOLBOI-PROMETHEUS}"
+          },
           "expr": "pihole_reply{hostname='$node'}",
           "interval": "",
           "legendFormat": "{{ type }}",
@@ -405,7 +495,10 @@
       "type": "piechart"
     },
     {
-      "datasource": "bdow5owq5exvke",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_SMOLBOI-PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -458,7 +551,10 @@
       },
       "targets": [
         {
-          "datasource": "bdow5owq5exvke",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_SMOLBOI-PROMETHEUS}"
+          },
           "expr": "pihole_top_ads{hostname=~'$node'}",
           "interval": "",
           "legendFormat": "{{ domain }}",
@@ -470,7 +566,10 @@
       "type": "piechart"
     },
     {
-      "datasource": "bdow5owq5exvke",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_SMOLBOI-PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -562,10 +661,13 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "7.2.0",
       "targets": [
         {
-          "datasource": "bdow5owq5exvke",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_SMOLBOI-PROMETHEUS}"
+          },
           "expr": "pihole_dns_queries_all_types{hostname=~'$node'}",
           "interval": "",
           "legendFormat": "{{ job }}",
@@ -577,7 +679,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "bdow5owq5exvke",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_SMOLBOI-PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -636,7 +741,10 @@
       "pluginVersion": "11.0.0",
       "targets": [
         {
-          "datasource": "bdow5owq5exvke",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_SMOLBOI-PROMETHEUS}"
+          },
           "expr": "pihole_ads_percentage_today{hostname=~'$node'}",
           "instant": false,
           "interval": "",
@@ -649,7 +757,10 @@
       "type": "gauge"
     },
     {
-      "datasource": "bdow5owq5exvke",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_SMOLBOI-PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -741,10 +852,13 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "7.2.0",
       "targets": [
         {
-          "datasource": "bdow5owq5exvke",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_SMOLBOI-PROMETHEUS}"
+          },
           "expr": "pihole_ads_blocked_today{hostname=~'$node'}",
           "instant": false,
           "interval": "",
@@ -757,7 +871,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "bdow5owq5exvke",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_SMOLBOI-PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -833,17 +950,23 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "7.2.0",
       "targets": [
         {
-          "datasource": "bdow5owq5exvke",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_SMOLBOI-PROMETHEUS}"
+          },
           "expr": "pihole_queries_cached{hostname=~'$node'}",
           "interval": "",
           "legendFormat": "Queries cached",
           "refId": "A"
         },
         {
-          "datasource": "bdow5owq5exvke",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_SMOLBOI-PROMETHEUS}"
+          },
           "expr": "pihole_queries_forwarded{hostname=~'$node'}",
           "interval": "",
           "legendFormat": "Queries forwarded",
@@ -855,7 +978,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "bdow5owq5exvke",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_SMOLBOI-PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -931,10 +1057,13 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "7.2.0",
       "targets": [
         {
-          "datasource": "bdow5owq5exvke",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_SMOLBOI-PROMETHEUS}"
+          },
           "expr": "pihole_querytypes",
           "interval": "",
           "legendFormat": "{{ type }}",
@@ -946,7 +1075,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "bdow5owq5exvke",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_SMOLBOI-PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1038,10 +1170,13 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "7.2.0",
       "targets": [
         {
-          "datasource": "bdow5owq5exvke",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_SMOLBOI-PROMETHEUS}"
+          },
           "expr": "pihole_ads_percentage_today",
           "interval": "",
           "legendFormat": "{{ job }}",
@@ -1053,12 +1188,12 @@
       "type": "timeseries"
     },
     {
-      "datasource": "bdow5owq5exvke",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_SMOLBOI-PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
           "custom": {
             "align": "auto",
             "cellOptions": {
@@ -1129,7 +1264,10 @@
       "pluginVersion": "11.0.0",
       "targets": [
         {
-          "datasource": "bdow5owq5exvke",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_SMOLBOI-PROMETHEUS}"
+          },
           "expr": "topk(15, pihole_top_queries)",
           "instant": true,
           "interval": "30s",
@@ -1151,14 +1289,13 @@
       "type": "table"
     },
     {
-      "datasource": "bdow5owq5exvke",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_SMOLBOI-PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
           "custom": {
-            "align": "auto",
             "cellOptions": {
               "type": "auto"
             },
@@ -1226,7 +1363,10 @@
       "pluginVersion": "11.0.0",
       "targets": [
         {
-          "datasource": "bdow5owq5exvke",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_SMOLBOI-PROMETHEUS}"
+          },
           "expr": "topk(15, pihole_top_ads)",
           "instant": true,
           "interval": "",
@@ -1247,7 +1387,10 @@
       "type": "table"
     },
     {
-      "datasource": "bdow5owq5exvke",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_SMOLBOI-PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1339,10 +1482,13 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "7.2.0",
       "targets": [
         {
-          "datasource": "bdow5owq5exvke",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_SMOLBOI-PROMETHEUS}"
+          },
           "expr": "pihole_forward_destinations{hostname=~'$node'}",
           "interval": "",
           "legendFormat": "{{ destination }}",
@@ -1354,7 +1500,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "bdow5owq5exvke",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_SMOLBOI-PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1430,10 +1579,13 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "7.2.0",
       "targets": [
         {
-          "datasource": "bdow5owq5exvke",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_SMOLBOI-PROMETHEUS}"
+          },
           "expr": "pihole_unique_clients{hostname=~'$node'}",
           "interval": "",
           "legendFormat": "{{ hostname }}",
@@ -1451,14 +1603,10 @@
   "templating": {
     "list": [
       {
-        "current": {
-          "selected": true,
-          "text": "192.168.1.26",
-          "value": "192.168.1.26"
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "bdow5owq5exvke"
+          "uid": "${DS_SMOLBOI-PROMETHEUS}"
         },
         "definition": "label_values(pihole_ads_blocked_today, hostname)",
         "hide": 0,
@@ -1479,7 +1627,7 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-30m",
     "to": "now"
   },
   "timeRangeUpdatedDuringEditOrView": false,
@@ -1513,6 +1661,6 @@
   "timezone": "",
   "title": "Pi-hole",
   "uid": "pi-hole",
-  "version": 2,
+  "version": 1,
   "weekStart": ""
 }
