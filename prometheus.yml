@@ -49,3 +49,9 @@ scrape_configs:
       - targets: ['lumpyspace.internal.glob.casa:9100']
         labels:
           instance: 'lumpyspace'
+      - targets: ['pi1.internal.glob.casa:9100']
+        labels:
+          instance: 'pi1'
+      - targets: ['pi2.internal.glob.casa:9100']
+        labels:
+          instance: 'pi2'
