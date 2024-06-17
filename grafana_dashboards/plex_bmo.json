@@ -102,7 +102,7 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 1,
+        "w": 3,
         "x": 0,
         "y": 1
       },
@@ -132,7 +132,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "plex_up",
+          "expr": "plex_up{instance=\"smolboi\"}",
           "format": "time_series",
           "instant": true,
           "legendFormat": "__auto",
@@ -188,8 +188,8 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 23,
-        "x": 1,
+        "w": 21,
+        "x": 3,
         "y": 1
       },
       "id": 23,
@@ -217,7 +217,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "plex_up{instance=\"plex-exporter:9594\"}",
+          "expr": "plex_up{instance=\"smolboi\"}",
           "instant": false,
           "legendFormat": "Heartbeat",
           "range": true,
@@ -383,7 +383,7 @@
             "uid": "bdow5owq5exvke"
           },
           "editorMode": "code",
-          "expr": "sum(plex_video_transcode_sessions_count{state!=\"paused\"})",
+          "expr": "sum(plex_video_transcode_sessions_count{state!=\"paused\", instance=\"smolboi\"})",
           "hide": false,
           "legendFormat": "Transcodes",
           "range": true,
@@ -396,7 +396,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(plex_sessions_count{state!=\"paused\"})",
+          "expr": "sum(plex_sessions_count{state!=\"paused\", instance=\"smolboi\"})",
           "interval": "",
           "legendFormat": "Streams",
           "range": true,
@@ -408,7 +408,7 @@
             "uid": "bdow5owq5exvke"
           },
           "editorMode": "code",
-          "expr": "sum(plex_media_downloads_count) > 0",
+          "expr": "sum(plex_media_downloads_count{instance=\"smolboi\"}) > 0",
           "hide": false,
           "legendFormat": "Downloads",
           "range": true,
@@ -616,7 +616,7 @@
             "uid": "bdow5owq5exvke"
           },
           "editorMode": "code",
-          "expr": "((node_memory_MemTotal_bytes{instance=\"node-exporter:9100\"} - node_memory_MemAvailable_bytes{instance=\"node-exporter:9100\"}) / node_memory_MemTotal_bytes{instance=\"node-exporter:9100\"}) * 100",
+          "expr": "((node_memory_MemTotal_bytes{instance=\"smolboi\"} - node_memory_MemAvailable_bytes{instance=\"smolboi\"}) / node_memory_MemTotal_bytes{instance=\"smolboi\"}) * 100",
           "instant": false,
           "interval": "",
           "legendFormat": "usage",
@@ -889,7 +889,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "plex_media_count{title=\"Movies\", instance=\"plex-exporter:9594\"}",
+          "expr": "plex_media_count{title=\"Movies\", instance=\"smolboi\"}",
           "interval": "",
           "legendFormat": "{{ title }}",
           "range": true,
@@ -954,7 +954,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "plex_media_count{title=\"TV Shows\", instance=\"plex-exporter:9594\"}",
+          "expr": "plex_media_count{title=\"TV Shows\", instance=\"smolboi\"}",
           "interval": "",
           "legendFormat": "{{ title }}",
           "range": true,
@@ -1019,7 +1019,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "plex_media_count{title=\"TV Shows - Episodes\", instance=\"plex-exporter:9594\"}",
+          "expr": "plex_media_count{title=\"TV Shows - Episodes\", instance=\"smolboi\"}",
           "interval": "",
           "legendFormat": "{{ title }}",
           "range": true,
@@ -1183,7 +1183,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "delta(plex_media_count[1d] offset 1d)",
+          "expr": "delta(plex_media_count{instance=\"smolboi\"}[1d] offset 1d)",
           "instant": false,
           "interval": "1d",
           "legendFormat": "{{ title }}",
@@ -1196,7 +1196,7 @@
       "type": "timeseries"
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1204,156 +1204,157 @@
         "y": 43
       },
       "id": 36,
-      "panels": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "bdow5owq5exvke"
+      "panels": [],
+      "title": "Downloads",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "bdow5owq5exvke"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "semi-dark-purple",
+            "mode": "fixed"
           },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "fixedColor": "semi-dark-purple",
-                "mode": "fixed"
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
               },
-              "mappings": [],
-              "noValue": "0",
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
+              {
+                "color": "red",
+                "value": 80
               }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 1,
-            "x": 0,
-            "y": 44
-          },
-          "id": 25,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "none",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showPercentChange": false,
-            "textMode": "auto",
-            "wideLayout": true
-          },
-          "pluginVersion": "11.0.0",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "bdow5owq5exvke"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(plex_media_downloads_count)",
-              "instant": false,
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Downloads",
-          "type": "stat"
+            ]
+          }
         },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 0,
+        "y": 44
+      },
+      "id": 25,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.0.0",
+      "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "bdow5owq5exvke"
           },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "fixedColor": "semi-dark-blue",
-                "mode": "fixed"
-              },
-              "mappings": [],
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 6,
-            "w": 23,
-            "x": 1,
-            "y": 44
-          },
-          "id": 31,
-          "options": {
-            "displayMode": "gradient",
-            "maxVizHeight": 300,
-            "minVizHeight": 10,
-            "minVizWidth": 0,
-            "namePlacement": "auto",
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showUnfilled": false,
-            "sizing": "auto",
-            "text": {
-              "valueSize": 0
-            },
-            "valueMode": "color"
-          },
-          "pluginVersion": "11.0.0",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "bdow5owq5exvke"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sort_desc(sum_over_time(plex_media_downloads_count[$__range]) > 0)",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "{{ username }}",
-              "range": false,
-              "refId": "A"
-            }
-          ],
-          "title": "Download Durations",
-          "type": "bargauge"
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(plex_media_downloads_count{instance=\"smolboi\"})",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
         }
       ],
       "title": "Downloads",
-      "type": "row"
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "bdow5owq5exvke"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "semi-dark-blue",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 21,
+        "x": 3,
+        "y": 44
+      },
+      "id": 31,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 300,
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": false,
+        "sizing": "auto",
+        "text": {
+          "valueSize": 0
+        },
+        "valueMode": "color"
+      },
+      "pluginVersion": "11.0.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "bdow5owq5exvke"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sort_desc(sum_over_time(plex_media_downloads_count{instance=\"smolboi\"}[$__range]) > 0)",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "{{ username }}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Download Durations",
+      "type": "bargauge"
     }
   ],
   "schemaVersion": 39,
@@ -1362,7 +1363,7 @@
     "list": []
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-1h",
     "to": "now"
   },
   "timeRangeUpdatedDuringEditOrView": false,
@@ -1372,6 +1373,6 @@
   "timezone": "",
   "title": "Plex BMO",
   "uid": "plex-bmo",
-  "version": 14,
+  "version": 19,
   "weekStart": ""
 }
